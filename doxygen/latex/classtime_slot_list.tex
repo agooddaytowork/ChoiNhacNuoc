@@ -1,0 +1,82 @@
+\hypertarget{classtime_slot_list}{}\section{time\+Slot\+List Class Reference}
+\label{classtime_slot_list}\index{time\+Slot\+List@{time\+Slot\+List}}
+Inheritance diagram for time\+Slot\+List\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtime_slot_list}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtime_slot_list_a6f8f70ee657d26a777f278d778ba4175}\label{classtime_slot_list_a6f8f70ee657d26a777f278d778ba4175}} 
+void {\bfseries append\+Item} (const quint8 \&group, const int \&from\+Ms, const int \&to\+Ms)
+\item 
+\mbox{\Hypertarget{classtime_slot_list_aff5f7a216fd8e4d2a17066c4ba42093d}\label{classtime_slot_list_aff5f7a216fd8e4d2a17066c4ba42093d}} 
+void {\bfseries remove\+Items} (const int \&id)
+\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtime_slot_list_a10230e14b11a55c793dd50787bf3d300}\label{classtime_slot_list_a10230e14b11a55c793dd50787bf3d300}} 
+void {\bfseries pre\+Item\+Appended} ()
+\item 
+\mbox{\Hypertarget{classtime_slot_list_a6fb04319700b8efb24d173ee58b07945}\label{classtime_slot_list_a6fb04319700b8efb24d173ee58b07945}} 
+void {\bfseries post\+Item\+Appended} ()
+\item 
+\mbox{\Hypertarget{classtime_slot_list_a7083a0f925da9af04d17e11fdc35ea47}\label{classtime_slot_list_a7083a0f925da9af04d17e11fdc35ea47}} 
+void {\bfseries pre\+Item\+Removed} (int index)
+\item 
+\mbox{\Hypertarget{classtime_slot_list_a220054e6bd363e699cd7ca2209d861ba}\label{classtime_slot_list_a220054e6bd363e699cd7ca2209d861ba}} 
+void {\bfseries post\+Item\+Removed} ()
+\item 
+\mbox{\Hypertarget{classtime_slot_list_ab929a81211c334bd61600741b0d99ffa}\label{classtime_slot_list_ab929a81211c334bd61600741b0d99ffa}} 
+void {\bfseries time\+Slot\+Item\+Changed} (const \mbox{\hyperlink{structtime_slot_item}{time\+Slot\+Item}} \&item)
+\item 
+\mbox{\Hypertarget{classtime_slot_list_a5ec2f91f9a292545664d3d4b97e21770}\label{classtime_slot_list_a5ec2f91f9a292545664d3d4b97e21770}} 
+void {\bfseries time\+Slot\+Item\+Removed} (const \mbox{\hyperlink{structtime_slot_item}{time\+Slot\+Item}} \&item)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtime_slot_list_a1cd9b1ac08dba361f5559e686e74e6fd}\label{classtime_slot_list_a1cd9b1ac08dba361f5559e686e74e6fd}} 
+{\bfseries time\+Slot\+List} (Q\+Object $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classtime_slot_list_ae4c1727831d22818a99ee50d21378b82}\label{classtime_slot_list_ae4c1727831d22818a99ee50d21378b82}} 
+Q\+Vector$<$ \mbox{\hyperlink{structtime_slot_item}{time\+Slot\+Item}} $>$ {\bfseries items} () const
+\item 
+\mbox{\Hypertarget{classtime_slot_list_a31647cc65b8a4ba56516b5ae4df84dac}\label{classtime_slot_list_a31647cc65b8a4ba56516b5ae4df84dac}} 
+bool {\bfseries set\+Item\+At} (int index, const \mbox{\hyperlink{structtime_slot_item}{time\+Slot\+Item}} \&item)
+\item 
+\mbox{\Hypertarget{classtime_slot_list_a06f8f6e6f14c14c88e3bb1ded2f456c4}\label{classtime_slot_list_a06f8f6e6f14c14c88e3bb1ded2f456c4}} 
+Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+LE int {\bfseries time\+Slot\+Collision\+Check} (const int \&id)
+\item 
+\mbox{\Hypertarget{classtime_slot_list_a33b47cc51453492e0e6fab1266c6bca7}\label{classtime_slot_list_a33b47cc51453492e0e6fab1266c6bca7}} 
+Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+LE bool {\bfseries get\+Collision\+Side} ()
+\item 
+\mbox{\Hypertarget{classtime_slot_list_a2bfee5da3e54d9e737ba28ad8d15aca4}\label{classtime_slot_list_a2bfee5da3e54d9e737ba28ad8d15aca4}} 
+Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+LE int {\bfseries count} ()
+\item 
+\mbox{\Hypertarget{classtime_slot_list_aac922a60e02bcd55751cdce7319d0233}\label{classtime_slot_list_aac922a60e02bcd55751cdce7319d0233}} 
+Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+LE int {\bfseries last\+Index} () const
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtime_slot_list_a55069a5cdebfd5e4dfca2ee72ebb11a3}\label{classtime_slot_list_a55069a5cdebfd5e4dfca2ee72ebb11a3}} 
+int {\bfseries m\+Group}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 39 of file timeslotlist.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+timeslotlist.\+h\item 
+debug/moc\+\_\+timeslotlist.\+cpp\item 
+timeslotlist.\+cpp\end{DoxyCompactItemize}

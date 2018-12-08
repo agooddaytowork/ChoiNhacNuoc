@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MusicPresensterElement.qml</file>
+        <file>MusicPresensterFrame.qml</file>
+        <file>MusicPresenterGroup.qml</file>
+        <file>TimeLegend.qml</file>
+        <file>Timeline.qml</file>
+        <file>TimeLineScroll.qml</file>
+        <file>GroupControlPanel.qml</file>
+        <file>TimeIndicator.qml</file>
+        <file>icons/pause.png</file>
+        <file>icons/play.png</file>
+        <file>icons/stop.png</file>
+        <file>TimeLineSlot.qml</file>
+        <file>TimeLineSlotControlBox.qml</file>
+        <file>SerialDialog.qml</file>
+        <file>icons/back.png</file>
+        <file>icons/next.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,25 @@
+var class_music_presenter_model =
+[
+    [ "IDRole", "class_music_presenter_model.html#aad086f8b0c5f5a152198fe378eb9d07dae5e9dbd9bf848aa7b70b31ce120d08a2", null ],
+    [ "GroupRole", "class_music_presenter_model.html#aad086f8b0c5f5a152198fe378eb9d07da2fd02f960e1bbf72eb19a1ebe789b42a", null ],
+    [ "ValveOnOffRole", "class_music_presenter_model.html#aad086f8b0c5f5a152198fe378eb9d07daa42a427b3a0185aebf98370717c3b30a", null ],
+    [ "LedOnOffRole", "class_music_presenter_model.html#aad086f8b0c5f5a152198fe378eb9d07da0bdc1799699e3c0f86023fe589bdac6a", null ],
+    [ "InverterRole", "class_music_presenter_model.html#aad086f8b0c5f5a152198fe378eb9d07dab9b137d44eb86731595b9242c4272401", null ],
+    [ "LedColorRole", "class_music_presenter_model.html#aad086f8b0c5f5a152198fe378eb9d07da35fbbe0c21130a1b74b5c073e8003f50", null ],
+    [ "InverterLevelRole", "class_music_presenter_model.html#aad086f8b0c5f5a152198fe378eb9d07da0fc2a052e8f323aa24219868a5c8f786", null ],
+    [ "LEDChannelsRole", "class_music_presenter_model.html#aad086f8b0c5f5a152198fe378eb9d07da026b37230a485eef57cbf2f3268d8910", null ],
+    [ "ValveChannelsRole", "class_music_presenter_model.html#aad086f8b0c5f5a152198fe378eb9d07da72f726146ec51c2c39af91c389d9a88f", null ],
+    [ "XPosRole", "class_music_presenter_model.html#aad086f8b0c5f5a152198fe378eb9d07da131e5e15e88b63621abcf3b148b951e1", null ],
+    [ "YPosRole", "class_music_presenter_model.html#aad086f8b0c5f5a152198fe378eb9d07dab6bf8d912097ed3fcc27dc66a63cabfd", null ],
+    [ "OddRole", "class_music_presenter_model.html#aad086f8b0c5f5a152198fe378eb9d07dad66c357b0cd42bbd566acb5501d14464", null ],
+    [ "~MusicPresenterModel", "class_music_presenter_model.html#a40f154585dfdb59d35bb2ca2dd18e99b", null ],
+    [ "MusicPresenterModel", "class_music_presenter_model.html#a361441da604e68b066dbeeda6b349e5f", null ],
+    [ "data", "class_music_presenter_model.html#a0cb9d531421fde36880d607944dd399b", null ],
+    [ "flags", "class_music_presenter_model.html#accdf24c158fac2167c990920d931d5bb", null ],
+    [ "list", "class_music_presenter_model.html#a516748de38693824273deb3d887c72f6", null ],
+    [ "roleNames", "class_music_presenter_model.html#a4f0154972fc0cf66972613abc0d056f3", null ],
+    [ "rowCount", "class_music_presenter_model.html#a771f733a651f6a2d91717e5018fbaaa7", null ],
+    [ "setData", "class_music_presenter_model.html#ad1ef19cdba7dd3528daa96e85cf510fe", null ],
+    [ "setList", "class_music_presenter_model.html#ab57bce25e4c398f9590e6c9c13dd9ccf", null ],
+    [ "list", "class_music_presenter_model.html#aa39655c9626cd9d1a2eec9adc122918a", null ]
+];

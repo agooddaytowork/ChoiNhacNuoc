@@ -1,0 +1,75 @@
+\hypertarget{class_music_presenter_model}{}\section{Music\+Presenter\+Model Class Reference}
+\label{class_music_presenter_model}\index{Music\+Presenter\+Model@{Music\+Presenter\+Model}}
+Inheritance diagram for Music\+Presenter\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_music_presenter_model}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_music_presenter_model_aad086f8b0c5f5a152198fe378eb9d07d}\label{class_music_presenter_model_aad086f8b0c5f5a152198fe378eb9d07d}} 
+enum \{ \newline
+{\bfseries I\+D\+Role} = Qt\+:\+:User\+Role, 
+{\bfseries Group\+Role}, 
+{\bfseries Valve\+On\+Off\+Role}, 
+{\bfseries Led\+On\+Off\+Role}, 
+\newline
+{\bfseries Inverter\+Role}, 
+{\bfseries Led\+Color\+Role}, 
+{\bfseries Inverter\+Level\+Role}, 
+{\bfseries L\+E\+D\+Channels\+Role}, 
+\newline
+{\bfseries Valve\+Channels\+Role}, 
+{\bfseries X\+Pos\+Role}, 
+{\bfseries Y\+Pos\+Role}, 
+{\bfseries Odd\+Role}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_music_presenter_model_a361441da604e68b066dbeeda6b349e5f}\label{class_music_presenter_model_a361441da604e68b066dbeeda6b349e5f}} 
+{\bfseries Music\+Presenter\+Model} (Q\+Object $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{class_music_presenter_model_a771f733a651f6a2d91717e5018fbaaa7}\label{class_music_presenter_model_a771f733a651f6a2d91717e5018fbaaa7}} 
+int {\bfseries row\+Count} (const Q\+Model\+Index \&parent=Q\+Model\+Index()) const override
+\item 
+\mbox{\Hypertarget{class_music_presenter_model_a0cb9d531421fde36880d607944dd399b}\label{class_music_presenter_model_a0cb9d531421fde36880d607944dd399b}} 
+Q\+Variant {\bfseries data} (const Q\+Model\+Index \&index, int role=Qt\+::\+Display\+Role) const override
+\item 
+\mbox{\Hypertarget{class_music_presenter_model_ad1ef19cdba7dd3528daa96e85cf510fe}\label{class_music_presenter_model_ad1ef19cdba7dd3528daa96e85cf510fe}} 
+bool {\bfseries set\+Data} (const Q\+Model\+Index \&index, const Q\+Variant \&value, int role=Qt\+::\+Edit\+Role) override
+\item 
+\mbox{\Hypertarget{class_music_presenter_model_accdf24c158fac2167c990920d931d5bb}\label{class_music_presenter_model_accdf24c158fac2167c990920d931d5bb}} 
+Qt\+::\+Item\+Flags {\bfseries flags} (const Q\+Model\+Index \&index) const override
+\item 
+\mbox{\Hypertarget{class_music_presenter_model_a4f0154972fc0cf66972613abc0d056f3}\label{class_music_presenter_model_a4f0154972fc0cf66972613abc0d056f3}} 
+virtual Q\+Hash$<$ int, Q\+Byte\+Array $>$ {\bfseries role\+Names} () const override
+\item 
+\mbox{\Hypertarget{class_music_presenter_model_a516748de38693824273deb3d887c72f6}\label{class_music_presenter_model_a516748de38693824273deb3d887c72f6}} 
+\mbox{\hyperlink{class_music_presenter_list}{Music\+Presenter\+List}} $\ast$ {\bfseries list} () const
+\item 
+\mbox{\Hypertarget{class_music_presenter_model_ab57bce25e4c398f9590e6c9c13dd9ccf}\label{class_music_presenter_model_ab57bce25e4c398f9590e6c9c13dd9ccf}} 
+void {\bfseries set\+List} (\mbox{\hyperlink{class_music_presenter_list}{Music\+Presenter\+List}} $\ast$list)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_music_presenter_model_aa39655c9626cd9d1a2eec9adc122918a}\label{class_music_presenter_model_aa39655c9626cd9d1a2eec9adc122918a}} 
+\mbox{\hyperlink{class_music_presenter_list}{Music\+Presenter\+List}} {\bfseries list}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 9 of file musicpresentermodel.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+musicpresentermodel.\+h\item 
+musicpresentermodel.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,100 @@
+\hypertarget{classtime_slot_model}{}\section{time\+Slot\+Model Class Reference}
+\label{classtime_slot_model}\index{time\+Slot\+Model@{time\+Slot\+Model}}
+Inheritance diagram for time\+Slot\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtime_slot_model}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtime_slot_model_a5c2509a4c20e6cbafb13d582c2e73424}\label{classtime_slot_model_a5c2509a4c20e6cbafb13d582c2e73424}} 
+enum \{ \newline
+{\bfseries I\+D\+Role} = Qt\+:\+:User\+Role, 
+{\bfseries Group\+Role}, 
+{\bfseries Valve\+On\+Off\+Role}, 
+{\bfseries Led\+On\+Off\+Role}, 
+\newline
+{\bfseries Inverter\+Role}, 
+{\bfseries From\+Ms\+Role}, 
+{\bfseries To\+Ms\+Role}, 
+{\bfseries Led\+Mode\+Role}, 
+\newline
+{\bfseries Inverter\+Level\+Role}, 
+{\bfseries File\+Bin\+Path\+Role}, 
+{\bfseries L\+E\+D\+Values\+List\+Role}, 
+{\bfseries L\+E\+D\+Channels\+Role}, 
+\newline
+{\bfseries Valve\+Channels\+Role}, 
+{\bfseries Valve\+Mode\+Role}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtime_slot_model_a76b7beaf6bf598a5e12cf0e57100ffd1}\label{classtime_slot_model_a76b7beaf6bf598a5e12cf0e57100ffd1}} 
+void {\bfseries size\+Changed} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtime_slot_model_a24787c0ad1a00e00d11542c019802576}\label{classtime_slot_model_a24787c0ad1a00e00d11542c019802576}} 
+{\bfseries time\+Slot\+Model} (Q\+Object $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classtime_slot_model_adbccd19c8555413b2c45005d4ab4eac5}\label{classtime_slot_model_adbccd19c8555413b2c45005d4ab4eac5}} 
+int {\bfseries row\+Count} (const Q\+Model\+Index \&parent=Q\+Model\+Index()) const override
+\item 
+\mbox{\Hypertarget{classtime_slot_model_ab3f9a4d41419bc39d0d516332a45c001}\label{classtime_slot_model_ab3f9a4d41419bc39d0d516332a45c001}} 
+Q\+Variant {\bfseries data} (const Q\+Model\+Index \&index, int role=Qt\+::\+Display\+Role) const override
+\item 
+\mbox{\Hypertarget{classtime_slot_model_a9b4e404c24a5580a317661a3f0b9b62e}\label{classtime_slot_model_a9b4e404c24a5580a317661a3f0b9b62e}} 
+bool {\bfseries set\+Data} (const Q\+Model\+Index \&index, const Q\+Variant \&value, int role=Qt\+::\+Edit\+Role) override
+\item 
+\mbox{\Hypertarget{classtime_slot_model_a116236ac7f08d69a7f5f841b959dca6a}\label{classtime_slot_model_a116236ac7f08d69a7f5f841b959dca6a}} 
+Qt\+::\+Item\+Flags {\bfseries flags} (const Q\+Model\+Index \&index) const override
+\item 
+\mbox{\Hypertarget{classtime_slot_model_ab37cf6b39ebb3e3fc77e96c0371f26ea}\label{classtime_slot_model_ab37cf6b39ebb3e3fc77e96c0371f26ea}} 
+Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+LE Q\+Variant {\bfseries get\+Data\+Per\+Index} (const int \&index, const Q\+Byte\+Array \&Role\+String)
+\item 
+\mbox{\Hypertarget{classtime_slot_model_ad5685549c714bca4da318d4dc12f1ca2}\label{classtime_slot_model_ad5685549c714bca4da318d4dc12f1ca2}} 
+Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+LE bool {\bfseries set\+Data\+Per\+Index} (const int \&index, const Q\+Byte\+Array \&Role\+String, const Q\+Variant \&value)
+\item 
+\mbox{\Hypertarget{classtime_slot_model_aec577d91ac6373d6f5b52f82a3fce0bb}\label{classtime_slot_model_aec577d91ac6373d6f5b52f82a3fce0bb}} 
+virtual Q\+Hash$<$ int, Q\+Byte\+Array $>$ {\bfseries role\+Names} () const override
+\item 
+\mbox{\Hypertarget{classtime_slot_model_a545f2f51bc855c04e4f47964fc79ca19}\label{classtime_slot_model_a545f2f51bc855c04e4f47964fc79ca19}} 
+\mbox{\hyperlink{classtime_slot_list}{time\+Slot\+List}} $\ast$ {\bfseries list} () const
+\item 
+\mbox{\Hypertarget{classtime_slot_model_a59aa5f346460a6aaef9b2b196e61cedc}\label{classtime_slot_model_a59aa5f346460a6aaef9b2b196e61cedc}} 
+void {\bfseries set\+List} (\mbox{\hyperlink{classtime_slot_list}{time\+Slot\+List}} $\ast$list)
+\item 
+\mbox{\Hypertarget{classtime_slot_model_a974ad7212eee6066625c7ad37f628210}\label{classtime_slot_model_a974ad7212eee6066625c7ad37f628210}} 
+int {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{classtime_slot_model_a826b092b7df775286882ba7f9cee82db}\label{classtime_slot_model_a826b092b7df775286882ba7f9cee82db}} 
+void {\bfseries set\+Size} (int size)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtime_slot_model_a330c04e7bfd74add76d8d3dbf7da6e30}\label{classtime_slot_model_a330c04e7bfd74add76d8d3dbf7da6e30}} 
+\mbox{\hyperlink{classtime_slot_list}{time\+Slot\+List}} {\bfseries list}
+\item 
+\mbox{\Hypertarget{classtime_slot_model_a04b118aa0a283bc1441eb1d3da649438}\label{classtime_slot_model_a04b118aa0a283bc1441eb1d3da649438}} 
+int {\bfseries size}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 7 of file timeslotmodel.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+timeslotmodel.\+h\item 
+debug/moc\+\_\+timeslotmodel.\+cpp\item 
+timeslotmodel.\+cpp\end{DoxyCompactItemize}
