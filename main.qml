@@ -3,7 +3,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import QtMultimedia 5.9
 import QtQuick.Dialogs 1.2
-
+import Qt.labs.folderlistmodel 2.2
 
 
 
@@ -20,12 +20,60 @@ ApplicationWindow {
     property int  currentPosition: 0
     property int  buttonSize: 40
     property bool currentSongJustChanged: false
-
+    property bool  playMusic: false
     property string currentSong: ""
+    property bool  repeatList: false
+    property bool repeatOne: false
 
+
+
+    function playMusicAction(musicIndex)
+    {
+        root.currentSong = musicListModel.get(musicIndex).name
+        root.currentPosition = 0
+        root.duration = 0
+        audioPlayer.source = musicListModel.get(musicIndex).filePath
+        theInterfaceGod.clearTimeSlotList()
+        root.playMusic = true
+        musicListView.currentPlayedIndex = musicIndex
+
+
+    }
+
+    function returnDurationString(duration)
+    {
+        var minutes="00"
+        var seconds="00"
+        var miliSeconds ="000"
+
+        if(duration <=999)
+        {
+            miliSeconds = ("00" + duration).slice(-3)
+            return "00m:00s:"+miliSeconds +"ms"
+        }
+        else if(duration <=59999)
+        {
+            seconds = ("0" + parseInt(duration/1000)).slice(-2)
+            miliSeconds = ("00" + duration).slice(-3)
+
+            return "00m:"+seconds+"s:"+miliSeconds+"ms"
+        }
+        else
+        {
+            minutes = ("0" + parseInt(duration/60000)).slice(-2)
+
+            duration = duration%60000
+            seconds = ("0" + parseInt(duration/1000)).slice(-2)
+            miliSeconds =("00" + duration%1000).slice(-3)
+
+            return minutes + "m:" + seconds + "s:" + miliSeconds+"ms"
+
+        }
+    }
 
     onCurrentSongChanged: {
 
+        console.trace()
         root.currentSongJustChanged = true
         //        console.log("file:///"+appFilePath+"/Sessions/" + root.currentSong +".bin")
         //        theInterfaceGod.importTimeSlotList("file:///"+appFilePath+"/Sessions/" + root.currentSong +".bin")
@@ -47,6 +95,19 @@ ApplicationWindow {
             Qt.quit()
         }
 
+
+        onGui_timeSLotChanged:
+        {
+            if(root.playMusic)
+            {
+//                root.playMusic = false
+                audioPlayer.seek(root.currentPosition)
+                audioPlayer.play()
+                root.duration = audioPlayer.duration
+            }
+        }
+
+
         onGui_SerialPortConnection:
         {
             if(isConnected)
@@ -62,6 +123,7 @@ ApplicationWindow {
 
         onGui_FrameListResconstructed:
         {
+            console.trace()
             if(root.currentSongJustChanged)
             {
                 root.currentSongJustChanged = false
@@ -90,7 +152,7 @@ ApplicationWindow {
             height: parent.height
             ToolButton{
                 text: "File"
-
+                visible: false
                 onClicked: {
                     fileMenu.open()
                 }
@@ -122,8 +184,8 @@ ApplicationWindow {
                             root.duration = 0
 
                             audioPlayer.source = ""
-//                            root.currentPosition = 0
-//                            root.duration = 0
+                            //                            root.currentPosition = 0
+                            //                            root.duration = 0
                             theInterfaceGod.clearTimeSlotList()
 
                         }
@@ -157,7 +219,7 @@ ApplicationWindow {
 
             ToolSeparator
             {
-
+                visible: false
             }
 
 
@@ -172,6 +234,16 @@ ApplicationWindow {
                 icon.width: root.buttonSize
                 onClicked: {
                     //                    mainTimer.start()
+
+                    if(root.currentSong !== musicListModel.get(musicListView.currentPlayedIndex).name)
+                    {
+
+                        root.playMusicAction(musicListView.currentPlayedIndex)
+
+
+                    }
+
+                    root.playMusic = true
                     timeIndicator.autoPlay = true
                     audioPlayer.seek(root.currentPosition)
                     audioPlayer.play()
@@ -195,6 +267,7 @@ ApplicationWindow {
                 onClicked: {
                     audioPlayer.pause()
                     timeIndicator.autoPlay = false
+
                     //                    mainTimer.stop()
 
                 }
@@ -214,6 +287,7 @@ ApplicationWindow {
                     timeIndicator.autoPlay = false
                     //                    mainTimer.stop()
                     root.currentPosition = 0
+                    root.playMusic = false
                     audioPlayer.stop()
                 }
             }
@@ -226,10 +300,23 @@ ApplicationWindow {
                 icon.height: root.buttonSize
                 icon.width: root.buttonSize
                 onClicked: {
-//                    timeIndicator.autoPlay = false
-//                    //                    mainTimer.stop()
-//                    root.currentPosition = 0
-//                    audioPlayer.stop()
+                    for(var i = musicListView.currentPlayedIndex-1 ; i >=0 ; i--)
+                    {
+                        if(musicListModel.get(i).sessionAvailable !== false)
+                        {
+                            root.playMusicAction(i)
+                            return
+                        }
+                    }
+                    for( i = musicListView.currentPlayedIndex +1; i< musicListModel.count; i++)
+                    {
+                        if(musicListModel.get(i).sessionAvailable !== false)
+                        {
+                            root.playMusicAction(i)
+                            return
+                        }
+                    }
+
                 }
 
             }
@@ -243,10 +330,89 @@ ApplicationWindow {
                 icon.height: root.buttonSize
                 icon.width: root.buttonSize
                 onClicked: {
-//                    timeIndicator.autoPlay = false
-//                    //                    mainTimer.stop()
-//                    root.currentPosition = 0
-//                    audioPlayer.stop()
+                    for(var i = musicListView.currentPlayedIndex +1; i< musicListModel.count; i++)
+                    {
+                        if(musicListModel.get(i).sessionAvailable !== false)
+                        {
+                            root.playMusicAction(i)
+                            return
+                        }
+                    }
+                    for(i = 0; i < musicListModel.count; i++)
+                    {
+                        if(musicListModel.get(i).sessionAvailable !== false)
+                        {
+                            root.playMusicAction(i)
+                            return
+                        }
+                    }
+                }
+            } Button{
+                icon.name: "Repeat"
+                icon.source: root.repeatList?  "icons/repeatGreen.png" :"icons/repeatBlack.png"
+                width:  root.buttonSize
+                height: root.buttonSize
+                icon.color: "transparent"
+                icon.height: root.buttonSize
+                icon.width: root.buttonSize
+                onClicked: {
+                    root.repeatList = !root.repeatList
+                    if(root.repeatList)
+                    {
+                        root.repeatOne = false
+                    }
+                }
+            }
+
+            Button{
+                icon.name: "Repeat One"
+                icon.source: root.repeatOne?  "icons/oneRepeatGreen.png" :"icons/oneRepeatBlack.png"
+                width:  root.buttonSize
+                height: root.buttonSize
+                icon.color: "transparent"
+                icon.height: root.buttonSize
+                icon.width: root.buttonSize
+                onClicked: {
+                    root.repeatOne = !root.repeatOne
+
+                    if(root.repeatOne)
+                    {
+                        root.repeatList = false
+                    }
+                }
+            }
+            Button{
+                icon.name: "Speaker"
+                icon.source: "icons/speaker.png"
+                width:  root.buttonSize
+                height: root.buttonSize
+                icon.color: "transparent"
+                icon.height: root.buttonSize
+                icon.width: root.buttonSize
+            }
+            Slider{
+                id: volumeSlider
+                from: 0.0
+                to: 1.0
+                stepSize: 0.05
+
+                value: 1.0
+
+                onValueChanged: {
+                    audioPlayer.volume = value
+                }
+            }
+            Button{
+                icon.name: "Mute"
+                icon.source: audioPlayer.muted ? "icons/mute.png" : "icons/muteBlack.png"
+                width:  root.buttonSize
+                height: root.buttonSize
+                icon.color: "transparent"
+                icon.height: root.buttonSize
+                icon.width: root.buttonSize
+                onClicked: {
+
+                    audioPlayer.muted = !audioPlayer.muted
                 }
             }
         }
@@ -272,39 +438,10 @@ ApplicationWindow {
 
             Label{
                 id: timeLabel
-                text: returnDurationString(root.currentPosition)
+                text: root.returnDurationString(root.currentPosition)
                 anchors.verticalCenter: parent.verticalCenter
 
-                function returnDurationString(duration)
-                {
-                    var minutes="00"
-                    var seconds="00"
-                    var miliSeconds ="000"
 
-                    if(duration <=999)
-                    {
-                        miliSeconds = ("00" + duration).slice(-3)
-                        return "00m:00s:"+miliSeconds +"ms"
-                    }
-                    else if(duration <=59999)
-                    {
-                        seconds = ("0" + parseInt(duration/1000)).slice(-2)
-                        miliSeconds = ("00" + duration).slice(-3)
-
-                        return "00m:"+seconds+"s:"+miliSeconds+"ms"
-                    }
-                    else
-                    {
-                        minutes = ("0" + parseInt(duration/60000)).slice(-2)
-
-                        duration = duration%60000
-                        seconds = ("0" + parseInt(duration/1000)).slice(-2)
-                        miliSeconds =("00" + duration%1000).slice(-3)
-
-                        return minutes + "m:" + seconds + "s:" + miliSeconds+"ms"
-
-                    }
-                }
             }
 
 
@@ -587,6 +724,40 @@ ApplicationWindow {
                     }
                 }
 
+                Label{
+
+                    text: returnDurationString(root.currentPosition)
+                    color: "white"
+                    font.pointSize: 15
+                    anchors.bottom: parent.bottom
+                    anchors.right: parent.right
+                    anchors.rightMargin: 80
+                    anchors.bottomMargin: 80
+                }
+
+                Slider{
+                    id: durationSlider
+                    from: root.fromMs
+                    to: root.toMs
+                    value: root.currentPosition
+                    stepSize: 1
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 40
+                    width: parent.width - 20
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    enabled: root.toMs == 0? false : true
+
+                    onValueChanged: {
+                        if(durationSlider.pressed)
+                        {
+                            audioPlayer.seek(value)
+                            root.currentPosition = value
+                        }
+                    }
+
+                }
+
             }
             TimeLineSlotControlBox{
 
@@ -609,14 +780,40 @@ ApplicationWindow {
         Rectangle{
             width: parent.width - 750
             height: parent.height
-            color: "black"
+            color: "grey"
 
 
             ListView{
                 id: musicListView
                 anchors.fill: parent
 
+
                 model: musicListModel
+                property int  currentPlayedIndex: -1
+
+                header: Rectangle{
+                    width: parent.width
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    height: 50
+                    Label{
+                        text: "Play List"
+                        anchors.centerIn: parent
+                        font.bold: true
+                        font.pointSize: 15
+                    }
+
+                    Button{
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.left
+                        anchors.leftMargin: 10
+                        text: "Add Music"
+
+                        onClicked: {
+                            addMusicDialog.open()
+                        }
+                    }
+                }
 
                 delegate: MouseArea{
                     id: musicItemDelegate
@@ -624,33 +821,93 @@ ApplicationWindow {
                     height: 50
 
 
-                    enabled: true
-                    onClicked: {
-                    console.log("click")
-                    }
+                    enabled: sessionAvailable
 
-                    onPressed: {
-                        console.trace()
-                    }
 
                     drag.target: dragMusicItem
 
                     property int visualIndex: index
 
+                    onClicked: {
+                        musicListView.currentPlayedIndex = musicItemDelegate.visualIndex
+                    }
+
+                    onDoubleClicked: {
+                        //                        if(root.currentSong !== name)
+                        //                        {
+//                        root.currentSong = name
+//                        root.currentPosition = 0
+//                        root.duration = 0
+//                        audioPlayer.source = filePath
+//                        theInterfaceGod.clearTimeSlotList()
+//                        root.playMusic = true
+//                        musicListView.currentPlayedIndex = musicItemDelegate.visualIndex
+
+                        //                        }
+                        //                        else
+                        //                        {
+
+                        //                        }
+                        root.playMusicAction(musicItemDelegate.visualIndex)
+
+
+                    }
+
                     Rectangle{
                         id: dragMusicItem
-                        width: parent.width - 50
-                        height: 40
+                        width: parent.width
+                        height: 50
+                        color: musicListView.currentPlayedIndex == musicItemDelegate.visualIndex? "orange" :"white"
+
                         anchors {
                             horizontalCenter: parent.horizontalCenter;
                             verticalCenter: parent.verticalCenter
                         }
                         Label{
                             text: name
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.left: parent.left
+                            anchors.leftMargin: 120
                             anchors.verticalCenter: parent.verticalCenter
                             color: "black"
 
+                        }
+
+                        CheckBox{
+                            text: "Available || "
+                            checked: sessionAvailable
+                            anchors.verticalCenter: parent.verticalCenter
+                            checkable: false
+                            onCheckedChanged:
+                            {
+                                checkable = false
+                            }
+
+                        }
+
+                        Button{
+                            text: "Delete"
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.right: parent.right
+                            anchors.rightMargin: 5
+                            onClicked: {
+                                musicListModel.remove(musicItemDelegate.visualIndex)
+                            }
+                        }
+
+                        Connections{
+                            target: sessionFolderListModel
+                            onCountChanged: {
+
+                                if(root.checkForSessions(name))
+                                {
+                                    sessionAvailable = true
+                                }
+                                else
+                                {
+                                    sessionAvailable = false
+                                }
+
+                            }
                         }
 
                         Drag.active: musicItemDelegate.drag.active
@@ -716,7 +973,7 @@ ApplicationWindow {
 
             if(duration != 0)
             {
-                 root.duration = duration
+                root.duration = duration
                 root.toMs = duration
                 theInterfaceGod.regenerateFrameList(duration, 50)
             }
@@ -741,6 +998,42 @@ ApplicationWindow {
             theInterfaceGod.playFrame(parseInt(frameNo))
 
         }
+
+        onStopped: {
+            console.trace()
+            if(/*audioPlayer.playbackState == audioPlayer.StoppedState*//* && */root.playMusic)
+            {
+                console.log("oi dcm")
+                if(root.repeatList)
+                {
+                    for(var i = musicListView.currentPlayedIndex +1; i< musicListModel.count; i++)
+                    {
+                        if(musicListModel.get(i).sessionAvailable !== false)
+                        {
+                            root.playMusicAction(i)
+                            return
+                        }
+                    }
+                    for(i = 0; i < musicListModel.count; i++)
+                    {
+                        if(musicListModel.get(i).sessionAvailable !== false)
+                        {
+                            root.playMusicAction(i)
+                            return
+                        }
+                    }
+                }
+                else if(root.repeatOne)
+                {
+                        audioPlayer.play()
+                }
+            }
+        }
+
+        onPlaybackStateChanged: {
+
+
+        }
     }
 
     FileDialog{
@@ -757,7 +1050,7 @@ ApplicationWindow {
 
             var theFileName = ""
             theFileName += fileUrl
-                var newSongName = theFileName.split('\\').pop().split('/').pop().slice(0,-4);
+            var newSongName = theFileName.split('\\').pop().split('/').pop().slice(0,-4);
             if(root.currentSong !== newSongName)
             {
                 root.currentSong = newSongName
@@ -792,6 +1085,8 @@ ApplicationWindow {
         anchors.topMargin:  250
     }
 
+
+
     FileDialog{
         id: addMusicDialog
         selectMultiple:  true
@@ -799,60 +1094,90 @@ ApplicationWindow {
         selectFolder:  false
         nameFilters: ["songs (*.mp3 *.wav)"]
         onAccepted: {
-//            for
+            //            for
 
             console.log("ACcepted")
             addMusicDialog.folder = fileUrl
             var musicString =""
-                musicString=    fileUrls
+            musicString=    fileUrls
             console.log(fileUrls.length)
             console.log(fileUrls[0])
 
-//            var newSongName = theFileName.split('\\').pop().split('/').pop().slice(0,-4);
+            //            var newSongName = theFileName.split('\\').pop().split('/').pop().slice(0,-4);
 
             for(var i = 0; i < fileUrls.length; i++)
             {
 
-
-                    if(musicListModel.count == 0)
+                if(musicListModel.count == 0)
+                {
+                    musicListModel.append({name: fileUrls[i].split('\\').pop().split('/').pop().slice(0,-4)
+                                              , filePath: fileUrls[i]
+                                              ,sessionAvailable: root.checkForSessions(fileUrls[i].split('\\').pop().split('/').pop().slice(0,-4))})
+                }
+                else
+                {
+                    var songName =""
+                    songName = fileUrls[i].split('\\').pop().split('/').pop().slice(0,-4)
+                    for(var ii =0; ii < musicListModel.count; ii++)
                     {
-                        musicListModel.append({name: fileUrls[i].split('\\').pop().split('/').pop().slice(0,-4), filePath: fileUrls[i]})
-                    }
-                    else
-                    {
-                        var songName =""
-                        songName = fileUrls[i].split('\\').pop().split('/').pop().slice(0,-4)
-                         for(var ii =0; ii < musicListModel.count; ii++)
-                         {
 
 
 
-                             var songFound = false
-                             console.log(musicListModel.get(ii).name)
-                             if(musicListModel.get(ii).name === songName)
-                             {
-                                songFound = true
-                                 break
-                             }
-
-                         }
-                            if(!songFound)
-                            {
-                                 musicListModel.append({name: songName, filePath: fileUrls[i]})
-                            }
-
-
-
+                        var songFound = false
+                        console.log(musicListModel.get(ii).name)
+                        if(musicListModel.get(ii).name === songName)
+                        {
+                            songFound = true
+                            break
+                        }
 
                     }
+                    if(!songFound)
+                    {
+                        musicListModel.append({name: songName
+                                                  , filePath: fileUrls[i]
+                                                  , sessionAvailable: root.checkForSessions(songName)})
+                    }
 
+                }
 
             }
 
             console.log("music List count: " +musicListModel.count)
 
-
         }
+    }
+
+    function checkForSessions(songName)
+    {
+
+        console.trace()
+        for(var ii = 0; ii < sessionFolderListModel.count; ii++)
+        {
+            var sessionName =  sessionFolderListModel.get(ii, "fileName").replace(".bin","")
+
+            console.log("Song Name: " + songName)
+            console.log("SessionName" + sessionName)
+            if(songName === sessionName  )
+            {
+
+                return true
+            }
+        }
+        return false;
+
+    }
+
+    FolderListModel{
+        id: sessionFolderListModel
+        nameFilters: ["*.bin"]
+        showDirs: false
+        showDotAndDotDot: false
+        rootFolder: Qt.resolvedUrl("file:///"+appFilePath+"/Sessions")
+        folder: Qt.resolvedUrl("file:///"+appFilePath+"/Sessions")
+
+
+
     }
 
 

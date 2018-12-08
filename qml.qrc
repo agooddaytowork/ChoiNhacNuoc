@@ -17,5 +17,12 @@
         <file>SerialDialog.qml</file>
         <file>icons/back.png</file>
         <file>icons/next.png</file>
+        <file>icons/repeatBlack.png</file>
+        <file>icons/repeatGreen.png</file>
+        <file>icons/mute.png</file>
+        <file>icons/oneRepeatBlack.png</file>
+        <file>icons/oneRepeatGreen.png</file>
+        <file>icons/speaker.png</file>
+        <file>icons/muteBlack.png</file>
     </qresource>
 </RCC>
