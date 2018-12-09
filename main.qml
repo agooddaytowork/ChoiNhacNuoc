@@ -308,7 +308,7 @@ ApplicationWindow {
                             return
                         }
                     }
-                    for( i = musicListView.currentPlayedIndex +1; i< musicListModel.count; i++)
+                    for( i = musicListView.count-1; i >=0; i--)
                     {
                         if(musicListModel.get(i).sessionAvailable !== false)
                         {
@@ -316,6 +316,7 @@ ApplicationWindow {
                             return
                         }
                     }
+
 
                 }
 
@@ -789,7 +790,7 @@ ApplicationWindow {
 
 
                 model: musicListModel
-                property int  currentPlayedIndex: -1
+                property int  currentPlayedIndex: 0
 
                 header: Rectangle{
                     width: parent.width
@@ -828,26 +829,12 @@ ApplicationWindow {
 
                     property int visualIndex: index
 
-                    onClicked: {
-                        musicListView.currentPlayedIndex = musicItemDelegate.visualIndex
-                    }
+//                    onClicked: {
+//                        musicListView.currentPlayedIndex = musicItemDelegate.visualIndex
+//                    }
 
                     onDoubleClicked: {
-                        //                        if(root.currentSong !== name)
-                        //                        {
-//                        root.currentSong = name
-//                        root.currentPosition = 0
-//                        root.duration = 0
-//                        audioPlayer.source = filePath
-//                        theInterfaceGod.clearTimeSlotList()
-//                        root.playMusic = true
-//                        musicListView.currentPlayedIndex = musicItemDelegate.visualIndex
 
-                        //                        }
-                        //                        else
-                        //                        {
-
-                        //                        }
                         root.playMusicAction(musicItemDelegate.visualIndex)
 
 
@@ -935,7 +922,28 @@ ApplicationWindow {
 
                     DropArea{
                         anchors { fill: parent; margins: 15 }
-                        onEntered: musicListModel.move(drag.source.visualIndex, musicItemDelegate.visualIndex,1)
+                        onEntered:
+                        {
+                            var sourceIndex = drag.source.visualIndex
+                            var targetIndex = musicItemDelegate.visualIndex
+
+
+//                            musicItemDelegate.visualIndex = PreviouSsourceIndex
+//                            drag.source.visualIndex = targetIndex
+
+                            if(musicListView.currentPlayedIndex === sourceIndex)
+                            {
+                                musicListView.currentPlayedIndex = targetIndex
+                            }
+                            else if(musicListView.currentPlayedIndex === targetIndex)
+                            {
+                                musicListView.currentPlayedIndex = sourceIndex
+                            }
+
+
+
+                            musicListModel.move(sourceIndex, targetIndex,1)
+                        }
                     }
                 }
             }

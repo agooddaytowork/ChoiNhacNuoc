@@ -9,10 +9,13 @@ bool LED_BinEffects::setNewPath(QString filePath, const int &ledNo)
 {
     if(mFilePath != filePath || mLedNo != ledNo)
     {
+        qDebug() << "filePath changed";
         mFilePath = filePath;
         mLedNo = ledNo;
         mFilePathJustChanged = true;
         QFile file(mFilePath);
+
+        rawColorMatrix.clear();
         if(file.open(QIODevice::ReadOnly ))
         {
             mEffectValid = true;
@@ -56,10 +59,11 @@ bool LED_BinEffects::setNewPath(QString filePath, const int &ledNo)
         }
         else
         {
+            qDebug() << "Khong mo dc file bin";
             mEffectValid = false;
         }
     }
-    return false;
+    return true;
 }
 
 bool LED_BinEffects::isEffectValid()
