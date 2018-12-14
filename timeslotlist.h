@@ -12,7 +12,7 @@ struct timeSlotItem{
     int toMs;
     quint8 group;
     bool ValveOnOff = false;
-    bool LedOnOff = false;
+    bool LedOnOff = true;
     bool Inverter = false;
     bool LedSync = false;
     quint8 LedMode = 0;
@@ -33,6 +33,8 @@ struct timeSlotItem{
     bool UseLedBuiltInEffects = false;
     bool LedForceRepeat = false;
     int  LedForceRepeatTimes = 0;
+    bool valid = true;
+    int ledSyncDelay = 0;
 };
 
 
@@ -78,9 +80,11 @@ signals:
 
     void SIG_NotifyListChanged();
 
+    void SIG_reportError(const QString &title, const QString &content);
+
 public slots:
 
-    void appendItem(const quint8 &group,const int &fromMs, const int &toMs);
+    void appendItem(const int &group, const int &fromMs, const int &toMs);
     void copyItem(const int &id, const int &fromMs);
     void removeItems(const int &id);
     void timeSlotListImportedHandler(const int &group, const QVector<timeSlotItem> &list);

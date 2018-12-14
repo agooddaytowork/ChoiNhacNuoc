@@ -135,6 +135,10 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
+    app.setOrganizationName("Tam Duong");
+    app.setOrganizationDomain("tamduongs.com");
+    app.setApplicationName("ChoiNhacNuoc");
+
     theTimeSlotExporter.setFilePath(QCoreApplication::applicationDirPath() +"/Sessions");
     theTimeSlotImporter.setRoothPath(QCoreApplication::applicationDirPath());
 

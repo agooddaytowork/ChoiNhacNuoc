@@ -1,12 +1,21 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
+import Qt.labs.settings 1.0
 
 Item {
 
     id: root
-    property string  currentPortName: ""
+    property string  currentPortName: appSetting.portName
+
+    Settings{
+        id: appSetting
+        property string portName: ""
+        property bool serialOutputState: false
+    }
+
     function open()
     {
+        console.log(appSetting.portName)
         theSerialDialog.open()
 
         theSerialPortNamesModel.clear()
@@ -81,6 +90,7 @@ Item {
                         theInterfaceGod.connectSerialPort(serialComboBox.currentText)
 
                         root.currentPortName = serialComboBox.currentText
+                        appSetting.portName = serialComboBox.currentText
                     }
                 }
 

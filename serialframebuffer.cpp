@@ -48,7 +48,7 @@ void SerialFrameBuffer::group1Handler(const int &frameNo,const PresenterFrame &t
     serialFrame.V_CH1_I = static_cast<char>(theFrame.InverterLevel);
 
 
-    if(theFrame.LedSync && theFrame.InverterLevel == 0)
+    if(theFrame.LedSync && theFrame.InverterLevel == 0 && !theFrame.LedSyncDelay[0])
     {
         QColor theColor(0,0,0);
         serialFrame.L_CH1[0] = static_cast<char>(theColor.red());
@@ -87,7 +87,7 @@ void SerialFrameBuffer::group2Handler(const int &frameNo,const PresenterFrame &t
 
     serialFrame.V_CH2_T = ValveToggle;
 
-    if(theFrame.LedSync && ValveToggle == 0x00)
+    if(theFrame.LedSync && ValveToggle == 0x00 && !theFrame.LedSyncDelay[0])
     {
         QColor theColor(0,0,0);
         serialFrame.L_CH2[0] = static_cast<char>(theColor.red());
@@ -133,7 +133,7 @@ void SerialFrameBuffer::group3Handler(const int &frameNo,const PresenterFrame &t
     serialFrame.V_CH3_T_L = ValveToggle_Low;
     serialFrame.V_CH3_T_H = ValveToggle_High;
 
-    if(theFrame.LedSync && ValveToggle_Low == 0x00 && ValveToggle_High == 0x00 )
+    if(theFrame.LedSync && ValveToggle_Low == 0x00 && ValveToggle_High == 0x00 && !theFrame.LedSyncDelay[0] )
     {
         QColor theColor(0,0,0);
         serialFrame.L_CH3[0] = static_cast<char>(theColor.red());
@@ -159,7 +159,7 @@ void SerialFrameBuffer::group4Handler(const int &frameNo,const PresenterFrame &t
 
     serialFrame.V_CH4_I = static_cast<char>(theFrame.InverterLevel);
 
-    if(theFrame.LedSync && theFrame.InverterLevel == 0)
+    if(theFrame.LedSync && theFrame.InverterLevel == 0 && !theFrame.LedSyncDelay[0])
     {
         QColor theColor(0,0,0);
 
@@ -191,7 +191,7 @@ void SerialFrameBuffer::group5Handler(const int &frameNo,const PresenterFrame &t
         serialFrame.V_CH5_CH7_CH9_T &=~(1 << 0);
     }
 
-    if(theFrame.LedSync && !theFrame.ValveOnOff.at(0))
+    if(theFrame.LedSync && !theFrame.ValveOnOff.at(0) && !theFrame.LedSyncDelay[0])
     {
         QColor theColor(0,0,0);
         serialFrame.L_CH5[0] = static_cast<char>(theColor.red());
@@ -228,13 +228,13 @@ void SerialFrameBuffer::group6Handler(const int &frameNo,const PresenterFrame &t
     {
         QColor theColor(0,0,0);
 
-        if(theFrame.InverterLevel ==0)
+        if(theFrame.InverterLevel ==0 && !theFrame.LedSyncDelay[0])
         {
             serialFrame.L_CH6_L[0] = static_cast<char>(theColor.red());
             serialFrame.L_CH6_L[1] = static_cast<char>(theColor.green());
             serialFrame.L_CH6_L[2] = static_cast<char>(theColor.blue());
         }
-        if(theFrame.InverterLevel1 == 0)
+        if(theFrame.InverterLevel1 == 0 && !theFrame.LedSyncDelay[1])
         {
             serialFrame.L_CH6_H[0] = static_cast<char>(theColor.red());
             serialFrame.L_CH6_H[1] = static_cast<char>(theColor.green());
@@ -277,13 +277,13 @@ void SerialFrameBuffer::group7Handler(const int &frameNo,const PresenterFrame &t
     if(theFrame.LedSync)
     {
         QColor theColor(0,0,0);
-        if(!theFrame.ValveOnOff.at(0))
+        if(!theFrame.ValveOnOff.at(0) && !theFrame.LedSyncDelay[0])
         {
             serialFrame.L_CH7_L[0] = static_cast<char>(theColor.red());
             serialFrame.L_CH7_L[1] = static_cast<char>(theColor.green());
             serialFrame.L_CH7_L[2] = static_cast<char>(theColor.blue());
         }
-        if(!theFrame.ValveOnOff.at(1))
+        if(!theFrame.ValveOnOff.at(1) && !theFrame.LedSyncDelay[1])
         {
             serialFrame.L_CH7_H[0] = static_cast<char>(theColor.red());
             serialFrame.L_CH7_H[1] = static_cast<char>(theColor.green());
@@ -358,48 +358,73 @@ void SerialFrameBuffer::group8Handler(const int &frameNo,const PresenterFrame &t
                 switch (i) {
 
                 case 0:
-                    serialFrame.L_CH8_0[0] = 0x00;
-                    serialFrame.L_CH8_0[1] = 0x00;
-                    serialFrame.L_CH8_0[2] = 0x00;
+                    if(!theFrame.LedSyncDelay[0])
+                    {
+                        serialFrame.L_CH8_0[0] = 0x00;
+                        serialFrame.L_CH8_0[1] = 0x00;
+                        serialFrame.L_CH8_0[2] = 0x00;
+                    }
+
                     break;
                 case 1:
 
-                    serialFrame.L_CH8_1[0] = 0x00;
-                    serialFrame.L_CH8_1[1] = 0x00;
-                    serialFrame.L_CH8_1[2] = 0x00;
+                    if(!theFrame.LedSyncDelay[1])
+                    {
+                        serialFrame.L_CH8_1[0] = 0x00;
+                        serialFrame.L_CH8_1[1] = 0x00;
+                        serialFrame.L_CH8_1[2] = 0x00;
+                    }
                     break;
                 case 2:
-                    serialFrame.L_CH8_2[0] = 0x00;
-                    serialFrame.L_CH8_2[1] = 0x00;
-                    serialFrame.L_CH8_2[2] = 0x00;
+                    if(!theFrame.LedSyncDelay[2])
+                    {
+                        serialFrame.L_CH8_2[0] = 0x00;
+                        serialFrame.L_CH8_2[1] = 0x00;
+                        serialFrame.L_CH8_2[2] = 0x00;
+                    }
                     break;
                 case 3:
 
 
-                    serialFrame.L_CH8_3[0] = 0x00;
-                    serialFrame.L_CH8_3[1] = 0x00;
-                    serialFrame.L_CH8_3[2] = 0x00;
+                    if(!theFrame.LedSyncDelay[3])
+                    {
+                        serialFrame.L_CH8_3[0] = 0x00;
+                        serialFrame.L_CH8_3[1] = 0x00;
+                        serialFrame.L_CH8_3[2] = 0x00;
+                    }
                     break;
                 case 4:
 
-                    serialFrame.L_CH8_4[0] = 0x00;
-                    serialFrame.L_CH8_4[1] = 0x00;
-                    serialFrame.L_CH8_4[2] = 0x00;
+                    if(!theFrame.LedSyncDelay[4])
+                    {
+                        serialFrame.L_CH8_4[0] = 0x00;
+                        serialFrame.L_CH8_4[1] = 0x00;
+                        serialFrame.L_CH8_4[2] = 0x00;
+                    }
                     break;
                 case 5:
-                    serialFrame.L_CH8_5[0] = 0x00;
-                    serialFrame.L_CH8_5[1] = 0x00;
-                    serialFrame.L_CH8_5[2] = 0x00;
+                    if(!theFrame.LedSyncDelay[5])
+                    {
+                        serialFrame.L_CH8_5[0] = 0x00;
+                        serialFrame.L_CH8_5[1] = 0x00;
+                        serialFrame.L_CH8_5[2] = 0x00;
+                    }
                     break;
                 case 6:
-                    serialFrame.L_CH8_6[0] = 0x00;
-                    serialFrame.L_CH8_6[1] = 0x00;
-                    serialFrame.L_CH8_6[2] = 0x00;
+                    if(!theFrame.LedSyncDelay[6])
+                    {
+                        serialFrame.L_CH8_6[0] = 0x00;
+                        serialFrame.L_CH8_6[1] = 0x00;
+                        serialFrame.L_CH8_6[2] = 0x00;
+                    }
                     break;
                 case 7:
-                    serialFrame.L_CH8_7[0] = 0x00;
-                    serialFrame.L_CH8_7[1] = 0x00;
-                    serialFrame.L_CH8_7[2] = 0x00;
+                    if(!theFrame.LedSyncDelay[7])
+                    {
+                        serialFrame.L_CH8_7[0] = 0x00;
+                        serialFrame.L_CH8_7[1] = 0x00;
+                        serialFrame.L_CH8_7[2] = 0x00;
+                    }
                     break;
 
                 }
@@ -438,7 +463,7 @@ void SerialFrameBuffer::group9Handler(const int &frameNo,const PresenterFrame &t
     else
     {
         serialFrame.V_CH5_CH7_CH9_T &=~(1 << 3);
-        if(theFrame.LedSync)
+        if(theFrame.LedSync && !theFrame.LedSyncDelay[0])
         {
             serialFrame.L_CH9_L[0] = 0x00;
             serialFrame.L_CH9_L[1] = 0x00;
@@ -452,7 +477,7 @@ void SerialFrameBuffer::group9Handler(const int &frameNo,const PresenterFrame &t
     else
     {
         serialFrame.V_CH5_CH7_CH9_T &=~(1 << 4);
-        if(theFrame.LedSync)
+        if(theFrame.LedSync && !theFrame.LedSyncDelay[1])
         {
             serialFrame.L_CH9_H[0] = 0x00;
             serialFrame.L_CH9_H[1] = 0x00;

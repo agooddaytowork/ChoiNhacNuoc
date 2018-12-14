@@ -50,6 +50,7 @@ void TimeSlotListExporter::timeSlotListHandler(const int &group, const QVector<t
         item.insert("UseLedBuiltInEffects", theItem.UseLedBuiltInEffects);
         item.insert("LedForceRepeat",theItem.LedForceRepeat);
         item.insert("LedForceRepeatTimes",theItem.LedForceRepeatTimes);
+        item.insert("LedSyncDelay",theItem.ledSyncDelay);
 
         data.append(item);
 

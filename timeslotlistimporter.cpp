@@ -37,6 +37,7 @@ timeSlotItem TimeSlotListImporter::constructTimeSlotItem(const int &group, const
     theItem.UseLedBuiltInEffects = theJsonObject.value("UseLedBuiltInEffects").toBool();
     theItem.LedForceRepeat = theJsonObject.value("LedForceRepeat").toBool();
     theItem.LedForceRepeatTimes = theJsonObject.value("LedForceRepeatTimes").toInt();
+    theItem.ledSyncDelay = theJsonObject.value("LedSyncDelay").toInt();
 
 
     return theItem;

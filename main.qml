@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.3
 import QtMultimedia 5.9
 import QtQuick.Dialogs 1.2
 import Qt.labs.folderlistmodel 2.2
+import Qt.labs.settings 1.0
 
 
 
@@ -25,6 +26,11 @@ ApplicationWindow {
     property bool  repeatList: false
     property bool repeatOne: false
 
+    Settings{
+        id: appSetting
+
+        property bool  serialOutput: false
+    }
 
 
     function playMusicAction(musicIndex)
@@ -113,6 +119,7 @@ ApplicationWindow {
             if(isConnected)
             {
                 serialOutPutCheckBox.enabled = true
+                serialOutPutCheckBox.checked = appSetting.serialOutput
             }
             else
             {
@@ -458,6 +465,7 @@ ApplicationWindow {
 
                 onCheckedChanged: {
                     theInterfaceGod.enableSerialOutput(checked)
+                    appSetting.serialOutput = checked
                 }
             }
             Button{

@@ -56,8 +56,23 @@ void timeSlotList::copyItem(const int &id, const int &fromMs)
     emit postItemAppended();
 }
 
-void timeSlotList::appendItem(const quint8 &group, const int &fromMs, const int &toMs)
+void timeSlotList::appendItem(const int &group, const int &fromMs, const int &toMs)
 {
+
+
+    if(group <0 || group > 8)
+    {
+        emit SIG_reportError("Timeslot list", "Group not exist: " + QString::number(group));
+
+        return;
+    }
+
+    if(group != mGroup)
+    {
+        emit SIG_reportError("Timeslot list", "Group requested is different from timeslot list internal Group: " + QString::number(group));
+
+        return;
+    }
     emit preItemAppended();
     timeSlotItem item;
 
@@ -122,6 +137,13 @@ void timeSlotList::appendItem(const quint8 &group, const int &fromMs, const int 
     mItems.append(timeSlotCollisionAdjust(item));
     mCurrentIndex++;
 
+
+    if(group <0 || group > 8)
+    {
+
+
+        return;
+    }
     emit postItemAppended();
     //    emit timeSlotItemChanged(item);
 }

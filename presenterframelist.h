@@ -33,6 +33,7 @@ struct PresenterFrame{
     quint8 LedChannels;
     quint8 ValveChannels;
     bool LedSync;
+    QList<bool> LedSyncDelay;
 
 };
 
@@ -66,12 +67,16 @@ class PresenterFrameList : public QObject
     QVector<PresenterFrame> frameList;
     QVector<PreviousFrame> timeSlotShortVerList;
 
-    PresenterFrame setFramePerGroup(const int &index, const timeSlotItem &timeSlot,  PresenterFrame aFrame);
+    PresenterFrame setFramePerGroup(const int &index, const timeSlotItem &timeSlot,  PresenterFrame aFrame, const int &currentFrame);
     PresenterFrame createEmptyFramePerGroup(const int &group) const;
     void emptyFrameCleanUp();
 
     int timeSlotExistInList(const int &id);
     QString returnLedValue(const int &index, const QString &ledList);
+
+    bool wasInverterValveON(const int &valveOrder, int currentFrame,  int maxSearchFrame );
+    bool wasValveOn_kieu_2_3_5(int currentFrame, int maxSearchFrame);
+    bool wasValveOn_kieu_7_8_9(const int &valveOrder, int currentFrame,  int maxSearchFrame);
 public:
 
     int mGroup;
