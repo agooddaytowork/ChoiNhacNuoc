@@ -53,8 +53,8 @@ Item {
         id: theElement
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
-        width: root.valveLevelControl ? root.edgePixelLength * scale + (valveLevel+1) /255 * 4  : root.edgePixelLength * scale
-        height: root.valveLevelControl ? root.edgePixelLength * scale + (valveLevel+1) /255 * 4  : root.edgePixelLength * scale
+        width: root.valveLevelControl ? (root.edgePixelLength - 2) * scale + (valveLevel+1) /255 * 6  : root.edgePixelLength * scale
+        height: root.valveLevelControl ? (root.edgePixelLength - 2)* scale + (valveLevel+1) /255 * 6  : root.edgePixelLength * scale
 //        radius: root.valveLevelControl == true ? ((root.edgePixelLength * scale) /2 /255 * valveLevel) +5 :(root.edgePixelLength * scale) /2
         radius:  root.edgePixelLength * scale / 2
 //        color: root.valveON == true ? "black" : "white"
@@ -85,7 +85,7 @@ Item {
         }
 
         border.width:  2
-        border.color: root.ledON? root.ledColor : "grey"
+        border.color: root.ledON? root.ledColor : "#515151"
 
     }
 
