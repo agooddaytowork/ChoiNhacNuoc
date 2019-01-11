@@ -308,6 +308,7 @@ ApplicationWindow {
                     root.currentPosition = 0
                     root.playMusic = false
                     audioPlayer.stop()
+
                 }
             }
             Button{
@@ -433,6 +434,19 @@ ApplicationWindow {
                 onClicked: {
 
                     audioPlayer.muted = !audioPlayer.muted
+                }
+            }
+
+            Button{
+                text: "Reset Frame"
+
+                height: root.buttonSize
+                icon.color: "transparent"
+                icon.height: root.buttonSize
+                icon.width: root.buttonSize
+                onClicked: {
+
+                    theInterfaceGod.sendSerialStopFrame()
                 }
             }
         }
@@ -1027,7 +1041,11 @@ ApplicationWindow {
 
         }
 
+
+
         onStopped: {
+
+            theInterfaceGod.sendSerialStopFrame()
             // console.trace()
             if(/*audioPlayer.playbackState == audioPlayer.StoppedState*//* && */root.playMusic)
             {

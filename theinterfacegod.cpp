@@ -124,3 +124,7 @@ void theInterfaceGod::clearTimeSlotList()
     emit SIG_clearTimeSlotList();
 }
 
+void theInterfaceGod::sendSerialStopFrame()
+{
+    emit SIG_sendSerialStopFrame();
+}

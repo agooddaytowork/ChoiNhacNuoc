@@ -86,6 +86,7 @@ public:
     void regenerateFrameList(const int &numberOfFrame);
     void playSerialFrame (const int &index);
     void setSerialEnableOutput(const bool &enable);
+    void sendEmptyFrame();
 
 signals:
     void SIG_sendFrameToSerialPort(const QByteArray &frame);

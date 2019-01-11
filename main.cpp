@@ -83,6 +83,7 @@ int main(int argc, char *argv[])
     QObject::connect(&aPortal,&SerialPortal::SIG_isConnected,&theGod,&theInterfaceGod::serialPortConnectionStatus);
 
     QObject::connect(&theGod, &theInterfaceGod::SIG_playFrame,&theSerialFrameBuffer, &SerialFrameBuffer::playSerialFrame);
+    QObject::connect(&theGod,&theInterfaceGod::SIG_sendSerialStopFrame,&theSerialFrameBuffer,&SerialFrameBuffer::sendEmptyFrame);
     QObject::connect(&theGod,&theInterfaceGod::SIG_connectSerialPort,&aPortal,&SerialPortal::connect);
     QObject::connect(&theGod,&theInterfaceGod::SIG_disconnectSerialPort,&aPortal,&SerialPortal::disconnectSerialPort);
     QObject::connect(&theGod,&theInterfaceGod::SIG_enableSerialOutput, &theSerialFrameBuffer,&SerialFrameBuffer::setSerialEnableOutput);

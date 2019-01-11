@@ -27,6 +27,7 @@ public:
     Q_INVOKABLE void saveSession(const QString &fileName);
     Q_INVOKABLE void importTimeSlotList(const QString &fileName);
     Q_INVOKABLE void clearTimeSlotList();
+    Q_INVOKABLE void sendSerialStopFrame();
 
     void closeApplication();
     void reportError(const QString &title, const QString &content);
@@ -49,6 +50,7 @@ signals:
     void SIG_saveSession(const QString &fileName);
     void SIG_importTimeSlotList(const QString &fileName);
     void SIG_clearTimeSlotList();
+    void SIG_sendSerialStopFrame();
 
 
 public slots:

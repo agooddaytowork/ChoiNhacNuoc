@@ -643,3 +643,16 @@ QByteArray SerialFrameBuffer::frameCombiner(const SingleSerialFrame &serialFrame
 
     return package;
 }
+
+
+void SerialFrameBuffer::sendEmptyFrame()
+{
+    QByteArray theFrame = frameCombiner(SingleSerialFrame());
+//       // qDebug() << theFrame.toHex(':');
+
+    qDebug() << "empty Frame: " + theFrame;
+    if(mSerialOutputEnable)
+    {
+        emit SIG_sendFrameToSerialPort(theFrame);
+    }
+}
