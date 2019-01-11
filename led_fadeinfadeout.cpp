@@ -34,8 +34,8 @@ bool LED_FadeInFadeOut::setSpeed(const int &speed)
             }
         }
 
-        qDebug() << "LED SIZE: " + QString::number(dataWithSpeed.count())
-                 << "Raw Led size: " + QString::number(data.count());
+        // qDebug() << "LED SIZE: " + QString::number(dataWithSpeed.count())
+//                 << "Raw Led size: " + QString::number(data.count());
         return true;
     }
 
@@ -60,9 +60,9 @@ bool LED_FadeInFadeOut::setEffects(const QColor &color)
 
         data.clear();
 
-        qDebug() << " THE FUCKING COLOR: " + QString::number(color.red()) +" " +QString::number(color.green())+" " +QString::number(color.blue());
+        // qDebug() << " THE FUCKING COLOR: " + QString::number(color.red()) +" " +QString::number(color.green())+" " +QString::number(color.blue());
 
-//        qDebug() << "hue ah hihi: " + QString::number(hue);
+//        // qDebug() << "hue ah hihi: " + QString::number(hue);
 
         QColor dmColor = color;
          for(int i = 0; i < 256; i++)
@@ -70,14 +70,14 @@ bool LED_FadeInFadeOut::setEffects(const QColor &color)
 
             dmColor.setHsl(hue,saturation,i);
              data.append(dmColor);
-//             qDebug() << "Color at i: " + theColor.name();W
+//             // qDebug() << "Color at i: " + theColor.name();W
          }
 
          for(int i = 255; i >=0; i=i-2)
          {
            dmColor.setHsl(hue,saturation,i);
              data.append(dmColor);
-//             qDebug() << "Color at i: " + theColor.name();
+//             // qDebug() << "Color at i: " + theColor.name();
          }
 
 

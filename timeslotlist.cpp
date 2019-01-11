@@ -1,4 +1,5 @@
 #include "timeslotlist.h"
+#include "QDebug"
 
 timeSlotList::timeSlotList(QObject *parent) : QObject(parent), mCurrentIndex(0), mCollisionSide(false), mGroup(0)
 {
@@ -267,6 +268,7 @@ timeSlotItem timeSlotList::timeSlotCollisionAdjust(const timeSlotItem &item)
 void timeSlotList::timeSlotListImportedHandler(const int &group, const QVector<timeSlotItem> &list)
 {
 
+//    // qDebug() << "timeSlotListImportedHandler - List size: " + QString::number(list.size());
     if(mGroup != group)
     {
         return;
@@ -305,7 +307,7 @@ void timeSlotList::clearTimeSlotList()
     mItems.clear();
     mCurrentIndex = 0;
 
-    emit SIG_NotifyListChanged();
+   emit SIG_NotifyListChanged();
 }
 
 void timeSlotList::updateAllTimeSlots()

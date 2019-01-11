@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("theInterfaceGod", &theGod);
 
     engine.rootContext()->setContextProperty("appFilePath",QCoreApplication::applicationDirPath());
-    qDebug() << "AppfilePath: " + QCoreApplication::applicationDirPath();
+    // qDebug() << "AppfilePath: " + QCoreApplication::applicationDirPath();
 
     serialFrameThread.start(); // serialFrameThread must start before backendThread
     backendThread.start();

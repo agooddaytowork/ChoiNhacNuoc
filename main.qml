@@ -35,15 +35,27 @@ ApplicationWindow {
 
     function playMusicAction(musicIndex)
     {
+        root.stopMusic()
         root.currentSong = musicListModel.get(musicIndex).name
         root.currentPosition = 0
         root.duration = 0
-        audioPlayer.source = musicListModel.get(musicIndex).filePath
+
         theInterfaceGod.clearTimeSlotList()
         root.playMusic = true
         musicListView.currentPlayedIndex = musicIndex
+        audioPlayer.source = musicListModel.get(musicIndex).filePath
 
 
+
+    }
+
+    function stopMusic()
+    {
+        timeIndicator.autoPlay = false
+        //                    mainTimer.stop()
+        root.currentPosition = 0
+        root.playMusic = false
+        audioPlayer.stop()
     }
 
     function returnDurationString(duration)
@@ -79,7 +91,7 @@ ApplicationWindow {
 
     onCurrentSongChanged: {
 
-        console.trace()
+        // console.trace()
         root.currentSongJustChanged = true
         //        console.log("file:///"+appFilePath+"/Sessions/" + root.currentSong +".bin")
         //        theInterfaceGod.importTimeSlotList("file:///"+appFilePath+"/Sessions/" + root.currentSong +".bin")
@@ -130,7 +142,7 @@ ApplicationWindow {
 
         onGui_FrameListResconstructed:
         {
-            console.trace()
+            // console.trace()
             if(root.currentSongJustChanged)
             {
                 root.currentSongJustChanged = false
@@ -1016,10 +1028,10 @@ ApplicationWindow {
         }
 
         onStopped: {
-            console.trace()
+            // console.trace()
             if(/*audioPlayer.playbackState == audioPlayer.StoppedState*//* && */root.playMusic)
             {
-                console.log("oi dcm")
+//                console.log("oi dcm")
                 if(root.repeatList)
                 {
                     for(var i = musicListView.currentPlayedIndex +1; i< musicListModel.count; i++)
@@ -1087,7 +1099,7 @@ ApplicationWindow {
         nameFilters: ["text (*.txt *.bin) "]
         onAccepted: {
 
-            console.log("file URL " +  fileUrl)
+//            console.log("file URL " +  fileUrl)
 
             theInterfaceGod.importTimeSlotList(fileUrl)
 
@@ -1112,12 +1124,12 @@ ApplicationWindow {
         onAccepted: {
             //            for
 
-            console.log("ACcepted")
+//            console.log("ACcepted")
             addMusicDialog.folder = fileUrl
             var musicString =""
             musicString=    fileUrls
-            console.log(fileUrls.length)
-            console.log(fileUrls[0])
+//            console.log(fileUrls.length)
+//            console.log(fileUrls[0])
 
             //            var newSongName = theFileName.split('\\').pop().split('/').pop().slice(0,-4);
 
@@ -1140,7 +1152,7 @@ ApplicationWindow {
 
 
                         var songFound = false
-                        console.log(musicListModel.get(ii).name)
+//                        console.log(musicListModel.get(ii).name)
                         if(musicListModel.get(ii).name === songName)
                         {
                             songFound = true
@@ -1159,7 +1171,7 @@ ApplicationWindow {
 
             }
 
-            console.log("music List count: " +musicListModel.count)
+//            console.log("music List count: " +musicListModel.count)
 
         }
     }
@@ -1167,13 +1179,13 @@ ApplicationWindow {
     function checkForSessions(songName)
     {
 
-        console.trace()
+        // console.trace()
         for(var ii = 0; ii < sessionFolderListModel.count; ii++)
         {
             var sessionName =  sessionFolderListModel.get(ii, "fileName").replace(".bin","")
 
-            console.log("Song Name: " + songName)
-            console.log("SessionName" + sessionName)
+//            console.log("Song Name: " + songName)
+//            console.log("SessionName" + sessionName)
             if(songName === sessionName  )
             {
 

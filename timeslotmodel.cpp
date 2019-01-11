@@ -24,7 +24,7 @@ timeSlotItem timeSlotModel::getTimeSlotItemPerId(const int &id)
 
     for(int i =0; i < mList->count(); i++)
     {
-        //        qDebug() << "current ID in list: " + QString::number(mList->items().at(i).id) ;
+        //        // qDebug() << "current ID in list: " + QString::number(mList->items().at(i).id) ;
         if(mList->items().at(i).id == id)
         {
             return mList->items().at(i);
@@ -32,7 +32,7 @@ timeSlotItem timeSlotModel::getTimeSlotItemPerId(const int &id)
     }
 
     item.valid = false;
-   qDebug() << "Time Slot Model timeSlot not found in list, group: " + QString::number(mList->mGroup);
+   // qDebug() << "Time Slot Model timeSlot not found in list, group: " + QString::number(mList->mGroup);
     return item;
 }
 
@@ -415,7 +415,7 @@ bool timeSlotModel::setData(const QModelIndex &index, const QVariant &value, int
 
     if (mList->setItemAt(index.row(), item)) {
         emit dataChanged(index, index, QVector<int>() << role);
-        //        qDebug() << "setData";
+        //        // qDebug() << "setData";
         return true;
     }
     return false;
@@ -503,7 +503,7 @@ void timeSlotModel::setList(timeSlotList *list)
 
         connect(mList,&timeSlotList::SIG_NotifyListChanged,this,[=](){
 
-            //            qDebug() << "list change ne dmmm";
+            //            // qDebug() << "list change ne dmmm";
             //             emit dataChanged(createIndex(0,0), createIndex(rowCount()-1,0), QVector<int>());
 
             emit this->listChanged();

@@ -15,7 +15,7 @@ Item {
 
     function open()
     {
-        console.log(appSetting.portName)
+//        console.log(appSetting.portName)
         theSerialDialog.open()
 
         theSerialPortNamesModel.clear()

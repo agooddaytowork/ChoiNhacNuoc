@@ -128,7 +128,7 @@ void TimeSlotListImporter::importFile(const QString &filePath)
 {
 
 
-//    qDebug() << "TimeSlotListImporter::importFile :" +QUrl(filePath).toLocalFile();
+//    // qDebug() << "TimeSlotListImporter::importFile :" +QUrl(filePath).toLocalFile();
 
     QFile file(QUrl(filePath).toLocalFile());
 
@@ -160,7 +160,7 @@ void TimeSlotListImporter::importFile(const QString &filePath)
                     timeSlotList.append(constructTimeSlotItem(theGroup.value("group").toInt(), timeSlotsArray.at(ii).toObject()));
                 }
 
-//                qDebug() << "Emit shits";
+//                // qDebug() << "Emit shits";
 
                 emit SIG_updateTimeSlotSlit(theGroup.value("group").toInt(), timeSlotList);
 
@@ -173,8 +173,8 @@ void TimeSlotListImporter::importFile(const QString &filePath)
     }
     else
     {
-        qDebug() << file.errorString();
-//        qDebug() << "file is not open";
+        // qDebug() << file.errorString();
+//        // qDebug() << "file is not open";
     }
 
 }

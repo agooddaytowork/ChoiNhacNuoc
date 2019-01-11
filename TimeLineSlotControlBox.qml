@@ -75,12 +75,12 @@ Item {
 
     function updateValveData()
     {
-        console.trace()
-        console.log("Group: " + root.currentGroupIndex + " - timeslot: " + root.currentTimeSlotIndex
-                    + " - valveMode: " + valveModeComboBox.currentIndex)
+//        // console.trace()
+//        console.log("Group: " + root.currentGroupIndex + " - timeslot: " + root.currentTimeSlotIndex
+//                    + " - valveMode: " + valveModeComboBox.currentIndex)
         //        if(theTimeSlotModel.size !== 0  && root.currentTimeSlotIndex <= theTimeSlotModel.size)
         //        {
-        //        console.trace()
+        //        // console.trace()
 
 
 
@@ -129,7 +129,7 @@ Item {
         theTimeSlotModel.setDataPerIndex(root.currentTimeSlotIndex,"ValveSpeed",speedValveSpinBox.value)
         theTimeSlotModel.setDataPerIndex(root.currentTimeSlotIndex,"ValveModeName", valveEffectFolderModel.get(valveModeComboBox.currentIndex,"fileName"))
 
-        console.log(valveEffectFolderModel.get(valveModeComboBox.currentIndex,"fileSize"))
+//        console.log(valveEffectFolderModel.get(valveModeComboBox.currentIndex,"fileSize"))
         if(valveForceRepeatCheckBox.checked)
         {
             theTimeSlotModel.setDataPerIndex(root.currentTimeSlotIndex,"ToMs", newToMs)
@@ -264,8 +264,8 @@ Item {
         }
         else
         {
-            console.trace()
-            console.log("Led Mode Name: " +theTimeSlotModel.getDataPerIndex(root.currentTimeSlotIndex,"LedModeName") )
+//            // console.trace()
+//            console.log("Led Mode Name: " +theTimeSlotModel.getDataPerIndex(root.currentTimeSlotIndex,"LedModeName") )
             ledModeCombobox.currentIndex = root.setExternalLedMode(theTimeSlotModel.getDataPerIndex(root.currentTimeSlotIndex,"LedModeName"))
         }
 
@@ -281,7 +281,7 @@ Item {
         //            theTimeSlotModel.setDataPerIndex(root.currentTimeSlotIndex,"LedForceRepeatTimes",ledForceRepeatTimesSpinbox.value)
         //        }
 
-           console.log("external - ledModeComboBox current index " + ledModeCombobox.currentIndex)
+//           console.log("external - ledModeComboBox current index " + ledModeCombobox.currentIndex)
     }
 
 
@@ -305,7 +305,7 @@ Item {
     onCurrentGroupIndexChanged: {
 
         root.groupIndexJustChanged = true
-        console.log("timeSlotMGroupChanged")
+//        console.log("timeSlotMGroupChanged")
         refreshModel()
 
 
@@ -330,8 +330,8 @@ Item {
             valveControlPane.state = "Default"
         }
 
-        console.log("Group: " + root.currentGroupIndex + " - timeslot: " + root.currentTimeSlotIndex
-                    + " - valveMode: " +theTimeSlotModel.getDataPerIndex(root.currentTimeSlotIndex, "ValveMode") )
+//        console.log("Group: " + root.currentGroupIndex + " - timeslot: " + root.currentTimeSlotIndex
+//                    + " - valveMode: " +theTimeSlotModel.getDataPerIndex(root.currentTimeSlotIndex, "ValveMode") )
 
         root.updateCurrentConfiguration()
 
@@ -344,7 +344,7 @@ Item {
         //        if(root.groupIndexJustChanged)
         //        {
         //            root.groupIndexJustChanged = false
-        //            console.trace()
+        //            // console.trace()
         //            console.log("onCurrentTimeSlotIndexChanged")
         //            console.log("Group: " + root.currentGroupIndex + " - timeslot: " + root.currentTimeSlotIndex
         //                        + " - valveMode: " +theTimeSlotModel.getDataPerIndex(0, "ValveMode") )
@@ -359,10 +359,10 @@ Item {
         //            root.groupIndexJustChanged = false
         //            return
         //        }
-        console.trace()
-        console.log("onCurrentTimeSlotIndexChanged")
-        console.log("Group: " + root.currentGroupIndex + " - timeslot: " + root.currentTimeSlotIndex
-                    + " - valveMode: " +theTimeSlotModel.getDataPerIndex(root.currentTimeSlotIndex, "ValveMode") )
+//        // console.trace()
+//        console.log("onCurrentTimeSlotIndexChanged")
+//        console.log("Group: " + root.currentGroupIndex + " - timeslot: " + root.currentTimeSlotIndex
+//                    + " - valveMode: " +theTimeSlotModel.getDataPerIndex(root.currentTimeSlotIndex, "ValveMode") )
 
         root.updateCurrentConfiguration()
 
@@ -478,7 +478,7 @@ Item {
                             width: 180
                             onClicked:{
                                 //                                refreshModel()
-                                console.trace()
+                                // console.trace()
                                 console.log("file LED effect size: " + ledEffectFolderModel.get(ledModeCombobox.currentIndex,"fileSize"))
                                 console.log("Group: " + root.currentGroupIndex + " - timeslot Id: " + root.currentTimeSlotIndex)
 
@@ -916,15 +916,15 @@ Item {
 
         Component.onCompleted:
         {
-            console.trace()
-            console.log("Folder count: " + valveEffectFolderModel.count)
+//            // console.trace()
+//            console.log("Folder count: " + valveEffectFolderModel.count)
             //           valveEffectFolderModel. = Qt.resolvedUrl("file:///"+appFilePath+"/Effects")
             valveEffectFolderModel.folder = Qt.resolvedUrl("file:///"+appFilePath+"/ValveEffects/Kieu1")
 
         }
 
         onFolderChanged: {
-            console.log("Folder count: " + valveEffectFolderModel.count)
+//            console.log("Folder count: " + valveEffectFolderModel.count)
             valveModeComboBox.model = valveEffectFolderModel
             valveModeComboBox.textRole = "fileName"
 
@@ -945,7 +945,7 @@ Item {
 
         Component.onCompleted:
         {
-//            console.trace()
+//            // console.trace()
 //            console.log("Folder count: " + ledEffectFolderModel.count)
 //            //           valveEffectFolderModel. = Qt.resolvedUrl("file:///"+appFilePath+"/Effects")
             ledEffectFolderModel.folder = Qt.resolvedUrl("file:///"+appFilePath+"/LedEffects/Kieu1")
@@ -953,7 +953,7 @@ Item {
         }
 
         onFolderChanged: {
-            console.log("Folder count: " + ledEffectFolderModel.count)
+//            console.log("Folder count: " + ledEffectFolderModel.count)
             if(ledBuiltInEffectsCheckBox.checked)
             {
 
@@ -961,7 +961,7 @@ Item {
             }
             else
             {
-//                console.trace()
+//                // console.trace()
 //                console.log("Led Mode Name: " +theTimeSlotModel.getDataPerIndex(root.currentTimeSlotIndex,"LedModeName") )
                 ledModeCombobox.currentIndex = root.setExternalLedMode(theTimeSlotModel.getDataPerIndex(root.currentTimeSlotIndex,"LedModeName"))
             }
@@ -978,8 +978,8 @@ Item {
 
         onAccepted: {
             colorBoxesRepeater.itemAt(colorBoxesRepeater.currentSelectedIndex).color = theColorDialog.color
-            console.trace()
-            console.log("the color: " + theColorDialog.color)
+//            // console.trace()
+//            console.log("the color: " + theColorDialog.color)
         }
 
         onRejected: {

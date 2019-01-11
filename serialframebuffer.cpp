@@ -498,13 +498,15 @@ void SerialFrameBuffer::regenerateFrameList(const int &numberOfFrame)
     {
         mData.append(SingleSerialFrame());
     }
+
+    // qDebug() << "SerialFrameBuffer::regenerateFrameList completed";
 }
 
 void SerialFrameBuffer::playSerialFrame(const int &index)
 {
 
     QByteArray theFrame = frameCombiner(mData.at(index));
-//       qDebug() << theFrame.toHex(':');
+//       // qDebug() << theFrame.toHex(':');
 
     if(mSerialOutputEnable)
     {
@@ -636,8 +638,8 @@ QByteArray SerialFrameBuffer::frameCombiner(const SingleSerialFrame &serialFrame
     package+= CheckSum_Low;
     package+= serialFrame.stop;
 
-    //    qDebug() << "data size: " + QString::number(data.size());
-    //    qDebug() << "package size: " + QString::number(package.size());
+    //    // qDebug() << "data size: " + QString::number(data.size());
+    //    // qDebug() << "package size: " + QString::number(package.size());
 
     return package;
 }

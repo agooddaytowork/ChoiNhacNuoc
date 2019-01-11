@@ -14,7 +14,7 @@ void TimeSlotListExporter::setFilePath(const QString &filePath)
 void TimeSlotListExporter::timeSlotListHandler(const int &group, const QVector<timeSlotItem> &list)
 {
 
-    qDebug() << "timeSlotListHandler--- group : " + QString::number(group);
+    // qDebug() << "timeSlotListHandler--- group : " + QString::number(group);
     QJsonObject thePackage;
 
     thePackage.insert("group", group);
@@ -72,7 +72,7 @@ void TimeSlotListExporter::timeSlotListHandler(const int &group, const QVector<t
 
 void TimeSlotListExporter::setFileName(const QString &name)
 {
-    qDebug() << "setFileName--- : " + name;
+    // qDebug() << "setFileName--- : " + name;
     mFileName = name;
 }
 
@@ -80,12 +80,12 @@ void TimeSlotListExporter::setFileName(const QString &name)
 
 bool TimeSlotListExporter::saveDataToFile()
 {
-    qDebug() << "saveDataToFile--- : " + mFilePath+"/"+mFileName;
+    // qDebug() << "saveDataToFile--- : " + mFilePath+"/"+mFileName;
     QFile file(mFilePath+"/"+mFileName+".bin");
 
     if(file.open(QIODevice::WriteOnly | QIODevice::Truncate))
     {
-        qDebug() << "file opened";
+        // qDebug() << "file opened";
         mHandlerCnt = 0;
 
         QJsonArray theArray;
@@ -102,7 +102,7 @@ bool TimeSlotListExporter::saveDataToFile()
          mJsonData.clear();
         return true;
     }
-      qDebug() << "file is not opened";
+      // qDebug() << "file is not opened";
 
     return false;
 }
@@ -110,7 +110,7 @@ bool TimeSlotListExporter::saveDataToFile()
 
 void TimeSlotListExporter::saveDataToFileRequestHandler(const QString &fileName)
 {
-    qDebug() << "saveDataToFileRequestHandler: " +fileName;
+    // qDebug() << "saveDataToFileRequestHandler: " +fileName;
     setFileName(fileName);
     emit SIG_getTimeSlotList();
 }

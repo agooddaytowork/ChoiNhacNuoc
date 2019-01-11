@@ -9,7 +9,7 @@ bool LED_BinEffects::setNewPath(QString filePath, const int &ledNo)
 {
     if(mFilePath != filePath || mLedNo != ledNo)
     {
-        qDebug() << "filePath changed";
+//        // qDebug() << "filePath changed";
         mFilePath = filePath;
         mLedNo = ledNo;
         mFilePathJustChanged = true;
@@ -18,6 +18,7 @@ bool LED_BinEffects::setNewPath(QString filePath, const int &ledNo)
         rawColorMatrix.clear();
         if(file.open(QIODevice::ReadOnly ))
         {
+//             // qDebug() << ("filePath: " + filePath);
             mEffectValid = true;
 
             mEffectBytes = file.readAll();
@@ -26,7 +27,7 @@ bool LED_BinEffects::setNewPath(QString filePath, const int &ledNo)
             {
                 //emit error
 
-                qDebug() << "LED BIN EFFECT SIZE cannot % 3 || EFFECT size is not correct to LED Size";
+                // qDebug() << "LED BIN EFFECT SIZE cannot % 3 || EFFECT size is not correct to LED Size";
                 return false;
             }
 
@@ -59,7 +60,7 @@ bool LED_BinEffects::setNewPath(QString filePath, const int &ledNo)
         }
         else
         {
-            qDebug() << "Khong mo dc file bin";
+            // qDebug() << "Khong mo dc file bin : " + filePath;
             mEffectValid = false;
         }
     }
@@ -74,7 +75,7 @@ bool LED_BinEffects::isEffectValid()
 bool LED_BinEffects::setForceRepeat(const bool &forcedRepeat, const int &repeatTime)
 {
 
-//    qDebug() <<"force request: " + QString::number(forcedRepeat) + " repeat time: " + QString::number(repeatTime);
+//    // qDebug() <<"force request: " + QString::number(forcedRepeat) + " repeat time: " + QString::number(repeatTime);
     if(mForceRepeat != forcedRepeat || repeatTime != mRepeatTime || mFilePathJustChanged)
     {
 
@@ -95,7 +96,7 @@ bool LED_BinEffects::setForceRepeat(const bool &forcedRepeat, const int &repeatT
         mForceRepeatJustChanged = true;
 
 
-//               qDebug() << "forcedColorMatrix size: " + QString::number(forcedColorMatrix.size());
+//               // qDebug() << "forcedColorMatrix size: " + QString::number(forcedColorMatrix.size());
         return true;
 
     }

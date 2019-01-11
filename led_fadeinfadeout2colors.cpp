@@ -35,7 +35,7 @@ bool LED_FadeInFadeOut2Colors::setEffects(const QColor &Headcolor, const QColor 
 
         data.clear();
 
-//        qDebug() << "hue ah hihi: " + QString::number(hue);
+//        // qDebug() << "hue ah hihi: " + QString::number(hue);
 
         QColor dmColor = Headcolor;
          for(int i = 0; i < mFrameNo; i++)
@@ -44,7 +44,7 @@ bool LED_FadeInFadeOut2Colors::setEffects(const QColor &Headcolor, const QColor 
              dmColor.setHslF(hueHead + (hueStep * i),saturationHead +(saturationStep * i), lightnessHead + (lightstep*i));
 
              data.append(dmColor);
-//             qDebug() << "Color at i: " + theColor.name();
+//             // qDebug() << "Color at i: " + theColor.name();
          }
 
         return true;

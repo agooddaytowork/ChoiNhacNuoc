@@ -35,7 +35,7 @@ Item {
 
 
     onLedColorListChanged: {
-        console.trace()
+//        // console.trace()
         firstColorRec.color = returnColor(0)
         secondColorRec.color = returnColor(1)
     }
@@ -45,8 +45,8 @@ Item {
     width: root.refreshWidth()
 
     onValveModeChanged: {
-//        console.trace()
-        console.log("current valve Mode: " + root.valveMode)
+//        // console.trace()
+//        console.log("current valve Mode: " + root.valveMode)
     }
 
     Component.onCompleted: {
@@ -136,7 +136,7 @@ Item {
                         color: "white"
 
                         onWidthChanged: {
-                            console.log("width: " + width)
+//                            console.log("width: " + width)
                         }
                     }
                     Label{

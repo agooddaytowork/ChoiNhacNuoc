@@ -59,7 +59,7 @@ bool ValveEffect_Kieu5::setForceRepeat(const bool &forcedRepeat, const int &repe
         mForceRepeatJustChanged = true;
 
 
-//        qDebug() << "effectByte with speed size: " + QString::number(mEffectBytesWithSpeed.size());
+//        // qDebug() << "effectByte with speed size: " + QString::number(mEffectBytesWithSpeed.size());
      return true;
 
     }
@@ -165,7 +165,7 @@ bool ValveEffect_Kieu5::setSpeed( const int &theSpeed)
 quint8 ValveEffect_Kieu5::getData(const int &index, const bool &odd)
 {
 
-//    qDebug() << "index: " + QString::number(index) + " odd: " + QString::number(odd);
+//    // qDebug() << "index: " + QString::number(index) + " odd: " + QString::number(odd);
 
     if(odd)
     {

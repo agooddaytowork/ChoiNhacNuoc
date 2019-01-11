@@ -53,7 +53,7 @@ bool ValveEffect_Kieu4::setForceRepeat(const bool &forcedRepeat, const int &repe
         mForceRepeatJustChanged = true;
 
 
-        //        qDebug() << "effectByte with speed size: " + QString::number(mEffectBytesWithSpeed.size());
+        //        // qDebug() << "effectByte with speed size: " + QString::number(mEffectBytesWithSpeed.size());
         return true;
 
     }

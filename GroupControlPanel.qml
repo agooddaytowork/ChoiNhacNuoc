@@ -134,7 +134,7 @@ Item {
             }
 
             onPaseTimeSlot: {
-                console.log("PASTE NEW TIMESLOT: " +from)
+//                console.log("PASTE NEW TIMESLOT: " +from)
 
                 var list = returnTimeSlotList()
                 list.copyItem(root.currentCopyIndex, from)
@@ -152,6 +152,8 @@ Item {
                     list: root.returnTimeSlotList()
 
                     onListChanged: {
+//                        console.trace()
+//                        console.log("List changed")
                         dmModel.list = root.returnTimeSlotList()
 
                     }

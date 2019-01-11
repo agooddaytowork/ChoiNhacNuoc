@@ -62,7 +62,7 @@ bool ValveEffect_Kieu1::setForceRepeat(const bool &forcedRepeat, const int &repe
         mForceRepeatJustChanged = true;
 
 
-//        qDebug() << "effectByte with speed size: " + QString::number(mEffectBytesWithSpeed.size());
+//        // qDebug() << "effectByte with speed size: " + QString::number(mEffectBytesWithSpeed.size());
      return true;
 
     }
@@ -83,10 +83,10 @@ bool ValveEffect_Kieu1::setSpeed( const int &theSpeed)
 
 
         mEffectBytesWithSpeed.clear();
-         qDebug() << "chan vl vay";
+
         if(mForceRepeat)
         {
-            qDebug() << "mForceRepeatSet";
+            // qDebug() << "mForceRepeatSet";
             for(int i = 0; i < mEffectBytesForceRepeat.count();i++)
             {
                 if(mSpeed >= 0)
